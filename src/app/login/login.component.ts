@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   checklogin() {
     if (this.authenticationService.authenticate(this.username, this.password)) {
-      this.router.navigate(['']);
+      this.router.navigate(['home']);
       this.invalidLogin = false;
 
       console.log('Login is authenticated.');

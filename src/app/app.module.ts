@@ -11,7 +11,9 @@ import { FrontComponent } from './front/front.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientService } from './service/httpClient/httpClient.service';
 import { HttpClient } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component'; 
+import { HelperService } from './service/util/helper.service';
 
 
 
@@ -22,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     LogoutComponent,
     HeaderComponent,
     FooterComponent,
-    FrontComponent
+    FrontComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [HttpClientService, HttpClient],
+  providers: [HttpClientService, HttpClient, HelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
