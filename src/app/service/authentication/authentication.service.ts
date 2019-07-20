@@ -16,6 +16,7 @@ export class AuthenticationService {
   constructor(private httpClientService: HttpClientService, private helperService: HelperService) { }
 
   authenticate(username, password) : any {
+    const errDefault: String = 'Unable to log user in the Geek Cell server.';
     const userObservable = new Observable(observer => {
       setTimeout(() => {
         this.httpClientService.login(username, password).then(
@@ -32,8 +33,14 @@ export class AuthenticationService {
             }
           }).catch((err) => 
             {
-              console.log(err.error.errorMsg);
-              observer.next(err.error.errorMsg);
+              if (err.error != null)  {
+                console.log(err.error.errorMsg);
+                observer.next(err.error.errorMsg);
+              } else {
+                console.log(errDefault);
+                observer.next(errDefault);
+              }
+              
             });
       }, 1000);
       

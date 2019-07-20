@@ -13,7 +13,7 @@ export class HttpClientService {
 
   load() {
     console.log("load()-frontPage call");
-    return this.httpClient.get<string>('http://localhost:8080/frontPage');
+    return this.httpClient.get<string>('http://192.168.0.7:8080/frontPage');
   }
 
   login(username : string, password : string) : Promise<Object> {
@@ -22,7 +22,7 @@ export class HttpClientService {
       .set('password', password);
 
     console.log("login()-user login call");  
-    return this.httpClient.post('http://localhost:8080/login', params).toPromise();
+    return this.httpClient.post('http://192.168.0.7:8080/login', params).toPromise();
   }
 
 }

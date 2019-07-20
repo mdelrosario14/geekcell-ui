@@ -17,6 +17,6 @@ export class AppComponent {
   }
 
   public load(): void {
-        this.router.navigate(['front']);
+      this.router.navigate(['front']);
    }
 }
