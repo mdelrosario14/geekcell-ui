@@ -10,9 +10,10 @@ import { User } from '../models/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'mardy';
+  username = '';
   password = '';
   invalidLogin = false;
+  errorMessage = '';
   user : User;
 
   constructor(private authenticationService : AuthenticationService, private router : Router) { }
@@ -22,21 +23,19 @@ export class LoginComponent implements OnInit {
 
   checklogin() {
     const userObservable = this.authenticationService.authenticate(this.username, this.password);
-    userObservable.subscribe((userRespData : User) => {
+    userObservable.subscribe((userRespData : any) => {
       this.user = userRespData;
-      if (this.user != null) {
+      if (this.user != null && this.user.userId > 0) {
         this.router.navigate(['home']);
         this.invalidLogin = false;
   
         console.log('Login is authenticated.');
       } else {
         this.invalidLogin = true;
+        this.errorMessage = userRespData;
       }
     });
  
-
-
-    
   }
 
 }

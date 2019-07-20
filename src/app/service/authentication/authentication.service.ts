@@ -23,13 +23,18 @@ export class AuthenticationService {
             this.user = <User>ret['validUser'];
             if (this.user != null) {
               sessionStorage.setItem('username', username);
+              localStorage.setItem('username', username);
               console.log('user=' + this.user.email);
               observer.next(this.user);
             } else {
               console.log('user is invalid');
               observer.next(null);
             }
-          }).catch((err) => console.log(err.error.errorMsg));
+          }).catch((err) => 
+            {
+              console.log(err.error.errorMsg);
+              observer.next(err.error.errorMsg);
+            });
       }, 1000);
       
       });
@@ -37,12 +42,17 @@ export class AuthenticationService {
   }
       
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('username');
+    let session1 = sessionStorage.getItem('username');
+    let session2 = localStorage.getItem('username');
 
-    return !(user === null);
+    console.log('session=' + !session1 === null);
+    console.log('local=' + !session2 === null);
+
+    return !(session1 === null && session2 === null);
   }
 
   logOut() {
     sessionStorage.removeItem('username');
+    localStorage.removeItem('username');
   }
 }
