@@ -10,8 +10,8 @@ import { User } from '../models/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  username = '';
-  password = '';
+  email = '';
+  pwd = '';
   invalidLogin = false;
   errorMessage = '';
   user : User;
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   checklogin() {
-    const userObservable = this.authenticationService.authenticate(this.username, this.password);
+    const userObservable = this.authenticationService.authenticate(this.email, this.pwd);
     userObservable.subscribe((userRespData : any) => {
       this.user = userRespData;
       if (this.user != null && this.user.userId > 0) {

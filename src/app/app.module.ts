@@ -8,12 +8,14 @@ import { LogoutComponent } from './logout/logout.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FrontComponent } from './front/front.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientService } from './service/httpClient/httpClient.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component'; 
 import { HelperService } from './service/util/helper.service';
+import { RegisterComponent } from './register/register.component';
+import { RegisterService } from './service/register/register.service';
 
 
 
@@ -25,15 +27,17 @@ import { HelperService } from './service/util/helper.service';
     HeaderComponent,
     FooterComponent,
     FrontComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule 
   ],
-  providers: [HttpClientService, HttpClient, HelperService],
+  providers: [HttpClientService, HttpClient, HelperService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

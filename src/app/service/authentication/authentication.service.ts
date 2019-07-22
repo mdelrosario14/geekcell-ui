@@ -31,8 +31,7 @@ export class AuthenticationService {
               console.log('user is invalid');
               observer.next(null);
             }
-          }).catch((err) => 
-            {
+          }).catch((err) => {
               if (err.error != null)  {
                 console.log(err.error.errorMsg);
                 observer.next(err.error.errorMsg);
@@ -43,6 +42,7 @@ export class AuthenticationService {
               
             });
       }, 1000);
+      
       
       });
       return userObservable;
