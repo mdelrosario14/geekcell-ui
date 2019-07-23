@@ -18,11 +18,11 @@ export class RegisterService {
           (ret) => {
                user = <User>ret;
                console.log("return=" + user);
-            
+               observer.next(user);
           }).catch((err) => {
             if (err.error != null)  {
-              console.log(err.error.errorMsg);
-              observer.next(err.error.errorMsg);
+              console.log(err.error);
+              observer.next(err.error);
             } else {
               console.log(errDefault);
               observer.next(errDefault);

@@ -22,6 +22,13 @@ export class LoginComponent implements OnInit {
   }
 
   checklogin() {
+
+    if(this.email.trim.length == 0 || this.pwd.length == 0) {
+      this.invalidLogin = true;
+      this.errorMessage = 'Please enter your credentials.';
+      return;
+    }
+
     const userObservable = this.authenticationService.authenticate(this.email, this.pwd);
     userObservable.subscribe((userRespData : any) => {
       this.user = userRespData;

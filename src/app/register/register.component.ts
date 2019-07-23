@@ -17,6 +17,9 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   user : User;
+  error : string;
+  errorMessage = '';
+  errorFromServer = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,19 +32,19 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.email],
-      pwd: ['', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required, Validators.email]],
+      pwd: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
-  // convenience getter for easy access to form fields
+  
   get f() {
     return this.registerForm.controls;
   }
 
   onSubmit() {
+    console.log('enter here.');
     this.submitted = true;
-    // stop here if form is invalid
     if (this.registerForm.invalid) {
         return;
     }
@@ -52,26 +55,24 @@ export class RegisterComponent implements OnInit {
     this.registerService.registerNewUser(this.registerForm.value).subscribe(
       (respUserData) => {
           console.log("updated user = " + respUserData);
-          this.submitted = false;
-          this.router.navigate(['login']);
+          if (null != respUserData['email'] ) {
+            this.submitted = false;
+            this.router.navigate(['login']);
+            this.loading = false;
+          } else {
+            this.buttonsUpdateOnError(respUserData);
+          }          
       },
       (err) => {
-        this.submitted = false;
+        this.buttonsUpdateOnError(err);
       }
     );
+  }
 
-
-    /*
-    this.userService.register(this.registerForm.value)
-        .pipe(first())
-        .subscribe(
-            data => {
-                this.alertService.success('Registration successful', true);
-                this.router.navigate(['/login']);
-            },
-            error => {
-                this.alertService.error(error);
-                this.loading = false;
-            }); */
+  buttonsUpdateOnError(err : any) {
+    this.submitted = false;
+    this.errorFromServer = true;
+    this.errorMessage = err;
+    this.loading = false;
   }
 }
