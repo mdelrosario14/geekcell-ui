@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   checklogin() {
 
-    if(this.email.trim.length == 0 || this.pwd.length == 0) {
+    if(this.email.length == 0 || this.pwd.length == 0) {
       this.invalidLogin = true;
       this.errorMessage = 'Please enter your credentials.';
       return;

@@ -12,9 +12,7 @@ export class AppComponent {
   title = 'geekcell-ui';
 
   constructor (private authenticationService : AuthenticationService, private router: Router) {
-    if (!this.authenticationService.isUserLoggedIn()) {
-      this.load();
-    }
+    this.load();
   }
 
   public load(): void {

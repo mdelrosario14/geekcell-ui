@@ -12,20 +12,22 @@ import { Observable } from 'rxjs';
 export class AuthenticationService {
 
   user : User;
+  _csrf: string;
 
   constructor(private httpClientService: HttpClientService, private helperService: HelperService) { }
 
   authenticate(username, password) : any {
     const errDefault: String = 'Unable to log user in the Geek Cell server.';
     const userObservable = new Observable(observer => {
-      setTimeout(() => {
+      setTimeout(() =>  {
         this.httpClientService.login(username, password).then(
           (ret) => {
             this.user = <User>ret['validUser'];
             if (this.user != null) {
-              sessionStorage.setItem('username', username);
+              this._csrf = ret['_csrf'];
+              localStorage.setItem('csrf-token', this._csrf);
               localStorage.setItem('username', username);
-              console.log('user=' + this.user.email);
+              //console.log('token=' + this._jwt);
               observer.next(this.user);
             } else {
               console.log('user is invalid');
@@ -48,18 +50,8 @@ export class AuthenticationService {
       return userObservable;
   }
       
-  isUserLoggedIn() {
-    let session1 = sessionStorage.getItem('username');
-    let session2 = localStorage.getItem('username');
-
-    console.log('session=' + !session1 === null);
-    console.log('local=' + !session2 === null);
-
-    return !(session1 === null && session2 === null);
-  }
-
-  logOut() {
-    sessionStorage.removeItem('username');
+ logOut() {
+    localStorage.removeItem('csrf-token');
     localStorage.removeItem('username');
   }
 }

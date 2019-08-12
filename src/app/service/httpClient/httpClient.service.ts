@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
 import { User } from 'src/app/models/user.model';
 
 
@@ -10,7 +9,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class HttpClientService {
   
-  homeURL : string = 'http://192.168.0.7:8080/';
+  homeURL : string = 'http://localhost:8080/web/';
   constructor(private httpClient:HttpClient) { }
 
   load() {
@@ -34,7 +33,6 @@ export class HttpClientService {
     console.log("registerUser()-register new user=" + user.email);  
     return this.httpClient.post(this.homeURL + 'register', JSON.stringify(user), options).toPromise();
   }
-
 
 
 }
