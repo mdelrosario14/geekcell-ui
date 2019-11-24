@@ -1,0 +1,19 @@
+.WorksheetTable {    
+    width: 100%;
+}
+
+
+.WorksheetTable tr:hover {
+    background-color: #ddd;
+}
+
+.WorksheetTable >  tbody {
+  font-size: small;
+  width: 100%;
+  display: block;
+}
+
+.WorksheetTable >  tbody > tr > td {
+    border: solid 1px #DDEEEE;
+    text-shadow: 1px 1px 1px #fff;
+}

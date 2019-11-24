@@ -38,7 +38,7 @@
 
 .JournalTable th:nth-child(1), td:nth-child(1), th:nth-child(6), td:nth-child(6),
     th:nth-child(7), td:nth-child(7) {
-    min-width: 75px;  max-width: 75px;
+    min-width: 50px;  max-width: 50px;
 }
 .JournalTable th:nth-child(2),td:nth-child(2)   {
     min-width: 100px; max-width: 100px;
@@ -52,7 +52,6 @@ th:nth-child(4), td:nth-child(4) {
 .JournalTable th:nth-child(5), td:nth-child(5) {
     min-width: 200px; max-width: 200px; 
 }
-
 
 .JournalTable th:nth-child(8), td:nth-child(8) {
     min-width: 250px; max-width: 250px;

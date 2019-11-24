@@ -1,0 +1,31 @@
+<div class="table-responsive">
+        <p>Transaction of the month</p>
+        <table class="JournalTable">
+            <thead>
+                <tr>
+                  <th *ngFor="let col of trxCol">
+                    {{col}}
+                  </th>
+                </tr>
+            </thead>          
+            <tbody>
+                <tr *ngFor="let row of trx">
+                    <td>{{row.trxMonthId}}</td>
+                    <td>{{row.recordDateTime}}</td>  
+                    <td *ngIf="row.income == 'No Income Value'">-</td> 
+                    <td *ngIf="row.income != 'No Income Value'">{{row.income}}</td> 
+                    <td *ngIf="row.expense == 'No Expense Value'">-</td> 
+                    <td *ngIf="row.expense != 'No Expense Value'">{{row.expense}}</td> 
+                    <td>{{row.channel}}</td> 
+            
+                    <td *ngIf="row.debit > 0">{{row.debit | currency:'USD':symbol:'1.2-2'}}</td>   
+                    <td *ngIf="row.debit == 0">-</td>
+                    <td *ngIf="row.credit > 0">{{row.credit | currency:'USD':symbol:'1.2-2'}}</td> 
+                    <td *ngIf="row.credit == 0">-</td>
+                    <td>{{row.remarks}}</td>   
+                  </tr>
+            </tbody>          
+          </table>
+</div>
+<br/>
+

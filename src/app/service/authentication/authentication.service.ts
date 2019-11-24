@@ -3,6 +3,8 @@ import { HttpClientService } from '../httpClient/httpClient.service';
 import { HelperService } from '../util/helper.service';
 import { User } from 'src/app/models/user.model';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { FnParam } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,8 @@ export class AuthenticationService {
   user : User;
   _csrf: string;
 
-  constructor(private httpClientService: HttpClientService, private helperService: HelperService) { }
+  constructor(private httpClientService: HttpClientService, private helperService: HelperService,
+    private cookieService: CookieService) { }
 
   authenticate(username, password) : any {
     const errDefault: String = 'Unable to log user in the Geek Cell server.';
@@ -26,7 +29,10 @@ export class AuthenticationService {
             if (this.user != null) {
               this._csrf = ret['_csrf'];
               localStorage.setItem('csrf-token', this._csrf);
+              localStorage.setItem('JSESSIONID', ret['JSESSIONID']);
               localStorage.setItem('username', username);
+              
+              
               //console.log('token=' + this._jwt);
               observer.next(this.user);
             } else {
@@ -48,6 +54,14 @@ export class AuthenticationService {
       
       });
       return userObservable;
+  }
+
+
+  isUserLoggedIn() {
+    let session = localStorage.getItem('username');
+    console.log('local=' + !session === null);
+
+    return !(session === null);
   }
       
  logOut() {

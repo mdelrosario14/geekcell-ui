@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../service/authentication/authentication.service';
-import { Router } from '@angular/router';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private authenticationService : AuthenticationService, private router : Router) { }
-
-  ngOnInit() {
-    
+  ngOnInit(): void {
   }
+
+
+
+
 
 }

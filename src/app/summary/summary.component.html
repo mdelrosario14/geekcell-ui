@@ -1,0 +1,19 @@
+<div class="table-responsive">
+    <p>2019</p>
+    <table class="WorksheetTable">
+        <tr>
+                <th *ngFor="let col of nonTrxCol">
+                {{col}}
+                </th>
+        </tr>
+        <tr *ngFor="let row of incGrpResp">
+                <td>{{row.trxIncDesc}}</td>
+                <td>{{row.totalCnt | currency:'USD':symbol:'1.2-2'}}</td>      
+        </tr>
+        <tr>
+            <th>Total Income</th>
+            <th>{{totalIncome | currency:'USD':symbol:'1.2-2'}}</th>
+        </tr>
+    
+</table>
+<br/>

@@ -10,12 +10,18 @@ import { FooterComponent } from './footer/footer.component';
 import { FrontComponent } from './front/front.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientService } from './service/httpClient/httpClient.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component'; 
 import { HelperService } from './service/util/helper.service';
 import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './service/register/register.service';
+import { WorksheetService } from './service/worksheet/worksheet.service';
+import { SpringbootInterceptor } from './service/SpringbootInterceptor';
+import { CookieService } from 'ngx-cookie-service';
+import { SummaryComponent } from './summary/summary.component';
+import { MonthTabComponent } from './month-tab/month-tab.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -28,16 +34,27 @@ import { RegisterService } from './service/register/register.service';
     FooterComponent,
     FrontComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    SummaryComponent,
+    MonthTabComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule 
+    HttpClientXsrfModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
-  providers: [HttpClientService, HttpClient, HelperService, RegisterService],
+  providers: [HttpClientService, HttpClient, HelperService, RegisterService, WorksheetService, CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpringbootInterceptor,
+      multi: true
+    }
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
