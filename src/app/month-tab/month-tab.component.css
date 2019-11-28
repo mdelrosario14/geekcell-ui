@@ -1,5 +1,5 @@
 .JournalTable {    
-    width: 100%;
+    width: 80%;
 }
 
 .JournalTable >  thead {
@@ -10,7 +10,7 @@
 .JournalTable th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: rgb(2, 8, 65);
   color: rgb(255, 255, 255);
   font-size: small;
@@ -21,7 +21,7 @@
 }
 
 .JournalTable >  tbody {
-  height: 525px;
+  height: 610px;
   overflow: auto;
   padding-top: 3px;
   font-size: small;
@@ -54,7 +54,7 @@ th:nth-child(4), td:nth-child(4) {
 }
 
 .JournalTable th:nth-child(8), td:nth-child(8) {
-    min-width: 250px; max-width: 250px;
+    min-width: 220px; max-width: 220px;
 }
 
 

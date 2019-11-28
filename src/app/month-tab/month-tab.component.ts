@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Transaction } from '../models/transaction';
 import { WorksheetService } from '../service/worksheet/worksheet.service';
 import { Router } from '@angular/router';
@@ -14,6 +14,9 @@ import { TrxMonthReq } from '../models/trx-month-req';
 })
 export class MonthTabComponent implements OnInit {
 
+  @Input()
+  month: number = 0;
+
   trx: Transaction[];
   trxCol: string[] = ["No.", "Date", "Income", "Expense", "Channel", "Dr", "Cr", "Remarks"];
   
@@ -23,15 +26,32 @@ export class MonthTabComponent implements OnInit {
   ngOnInit() {
     let req = new TrxMonthReq();
     req.currency = 'USD';
-    req.localDateTime = new Date('08/01/2019');
+    //let dt = new Date();
+    let mStr = '';
+    let mon = this.month + 1;
+    if (mon < 10) {
+      mStr = '0' + mon;
+    } else {
+      mStr = '' + mon;
+    }
+    let dt = new Date(mStr + '/01/2019');
+    
+    let month = dt.getMonth();
+    let year = dt.getFullYear();
+    let firstDay = new Date(year, month, 1);
 
-
-    const incomeObsrvble = this.trxService.getCurrentMonthTransaction(req);
-    incomeObsrvble.subscribe((respData : any) => {
+    req.localDateTime = firstDay;
+    console.log('date: ' + firstDay);
+    const monthlyObservble = this.trxService.getCurrentMonthTransaction(req);
+    monthlyObservble.subscribe((respData : any) => {
       if (respData != null) {
         this.trx = <Transaction[]>respData['Transaction'];
       }
     });
+  }
+
+  updateTabPage(month : number) {
+
   }
 
 }

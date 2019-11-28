@@ -1,61 +1,16 @@
-.JournalTable {    
-    width: 100%;
+::ng-deep .nav-fill .nav-link.active {
+    margin-top: -1px;
+    border-top: 2px solid #06ac90;
 }
 
-.JournalTable >  thead {
-    display: block;
+::ng-deep .nav-pills .nav-link.active, 
+::ng-deep .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #06ac90;
 }
 
-
-.JournalTable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: rgb(2, 8, 65);
-  color: rgb(255, 255, 255);
-  font-size: small;
+.main-window {
+    min-height: 820px;
+    max-height: 1000px;
+    padding-top: 10px;
 }
-
-.JournalTable tr:hover {
-    background-color: #ddd;
-}
-
-.JournalTable >  tbody {
-  height: 525px;
-  overflow: auto;
-  padding-top: 3px;
-  font-size: small;
-  width: 100%;
-  display: block;
-}
-
-.JournalTable >  tbody > tr > td {
-    border: solid 1px #DDEEEE;
-    padding: 10px;
-    text-shadow: 1px 1px 1px #fff;
-}
-
-
-.JournalTable th:nth-child(1), td:nth-child(1), th:nth-child(6), td:nth-child(6),
-    th:nth-child(7), td:nth-child(7) {
-    min-width: 75px;  max-width: 75px;
-}
-.JournalTable th:nth-child(2),td:nth-child(2)   {
-    min-width: 100px; max-width: 100px;
-}
-
-.JournalTable th:nth-child(3), td:nth-child(3),
-th:nth-child(4), td:nth-child(4) {
-    min-width: 200px; max-width: 200px;
-}
-
-.JournalTable th:nth-child(5), td:nth-child(5) {
-    min-width: 200px; max-width: 200px; 
-}
-
-
-.JournalTable th:nth-child(8), td:nth-child(8) {
-    min-width: 250px; max-width: 250px;
-}
-
-

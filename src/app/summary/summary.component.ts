@@ -18,7 +18,14 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
 
-    const annualObservble = this.worksheetService.getAnnualTransaction(new Date('08/01/2019'), 'USD');
+    //let dt = new Date();
+    let dt = new Date('08/01/2019');
+    
+    let month = dt.getMonth();
+    let year = dt.getFullYear();
+    let firstDay = new Date(year, month, 1);
+
+    const annualObservble = this.worksheetService.getAnnualTransaction(new Date(firstDay), 'USD');
     annualObservble.subscribe((respData : any) => {
       if (respData != null) {
         this.incGrpResp = <IncomeGrpResp[]>respData['Income Group'];

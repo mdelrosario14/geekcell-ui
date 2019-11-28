@@ -1,16 +1,17 @@
 <app-header></app-header>
 
-<div class="container">
+<div class="container main-window">
+  <h2 style="text-align: center;">{{year}}</h2>
   <ngb-tabset type="pills">
       <ngb-tab title="Summary">
         <ng-template ngbTabContent>
           <app-summary></app-summary>
         </ng-template>
       </ngb-tab>
-      <ngb-tab>
-        <ng-template ngbTabTitle>August</ng-template>
+      <ngb-tab *ngFor="let month of months; index as i">
+        <ng-template ngbTabTitle>{{ month }}</ng-template>
         <ng-template ngbTabContent>
-            <app-month-tab></app-month-tab>
+            <app-month-tab [month]='i'></app-month-tab>
         </ng-template>
       </ngb-tab>
       <!--ngb-tab title="Disabled" [disabled]="true">

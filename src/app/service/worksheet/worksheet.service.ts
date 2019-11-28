@@ -27,7 +27,7 @@ export class WorksheetService {
               observer.next(null);
             }
           }).catch((err) => {
-              if (err.error != null)  {
+              if (err.error != null) {
                 console.log(err.error.errorMsg);
                 observer.next(err.error.errorMsg);
               } else {
